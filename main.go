@@ -174,7 +174,7 @@ func run() int {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Healthy"))
 	})
-	http.HandleFunc(path.Join(*routePrefix, "/probe"), func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/probe/", func(w http.ResponseWriter, r *http.Request) {
 		sc.Lock()
 		conf := sc.C
 		sc.Unlock()

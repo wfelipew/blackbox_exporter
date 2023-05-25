@@ -7,6 +7,7 @@ require (
 	github.com/alecthomas/units v0.0.0-20211218093645-b94a6e3cc137
 	github.com/andybalholm/brotli v1.0.5
 	github.com/go-kit/log v0.2.1
+	github.com/go-sql-driver/mysql v1.7.1
 	github.com/miekg/dns v1.1.50
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.15.1

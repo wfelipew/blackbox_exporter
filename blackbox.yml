@@ -49,3 +49,15 @@ modules:
     timeout: 5s
     icmp:
       ttl: 5
+
+  mysql_ccm:
+    prober: mysql
+    timeout: 2s
+    mysql:
+      username: "monitoring"
+      password: "123456"
+      port: 3306
+      query: "SELECT 1"
+      sql_query_response:
+      - column: "1"
+        value: "1"
