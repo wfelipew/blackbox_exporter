@@ -53,7 +53,6 @@ func Handler(w http.ResponseWriter, r *http.Request, c *config.Config, logger lo
 	if params == nil {
 		params = r.URL.Query()
 	}
-
 	moduleName := params.Get("module")
 	if moduleName == "" {
 		moduleName = "http_2xx"
