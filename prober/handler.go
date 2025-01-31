@@ -21,7 +21,6 @@ import (
 	"net/textproto"
 	"net/url"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/go-kit/log"
@@ -54,20 +53,11 @@ func Handler(w http.ResponseWriter, r *http.Request, c *config.Config, logger lo
 	if params == nil {
 		params = r.URL.Query()
 	}
-	splitPath := strings.Split(r.URL.Path, "/")
 
 	moduleName := params.Get("module")
 	if moduleName == "" {
-
-		if len(splitPath) >= 3 {
-			moduleName = splitPath[3]
-		}
-
-		if moduleName == "" {
-			moduleName = "http_2xx"
-		}
+		moduleName = "http_2xx"
 	}
-
 	module, ok := c.Modules[moduleName]
 	if !ok {
 		http.Error(w, fmt.Sprintf("Unknown module %q", moduleName), http.StatusBadRequest)
@@ -97,13 +87,8 @@ func Handler(w http.ResponseWriter, r *http.Request, c *config.Config, logger lo
 
 	target := params.Get("target")
 	if target == "" {
-		if len(splitPath) >= 3 {
-			target = splitPath[2]
-		}
-		if target == "" {
-			http.Error(w, "Target parameter is missing", http.StatusBadRequest)
-			return
-		}
+		http.Error(w, "Target parameter is missing", http.StatusBadRequest)
+		return
 	}
 
 	prober, ok := Probers[module.Prober]
